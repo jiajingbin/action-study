@@ -1,0 +1,14 @@
+name: Print GitHub Event Context
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print_context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print GitHub Event Context
+        env:
+          EVENT_CONTEXT: ${{ toJSON(github.event) }}
+        run: |
+          echo "${EVENT_CONTEXT}"
