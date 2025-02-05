@@ -1,0 +1,20 @@
+name: Comment when opened
+
+on:
+  issues:
+    types:
+      - opened
+
+permissions:
+  issues: write  # 设置对问题的写权限
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add a comment to the issue
+        run: |
+          echo "::error file=app.js,line=1::Missing semicolon"  # 示例错误注释
+          gh issue comment ${{ github.event.issue.number }} --body "Thank you for opening this issue!"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用自动生成的 GitHub Token
