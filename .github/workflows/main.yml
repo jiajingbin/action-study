@@ -12,9 +12,15 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2  # 检出当前仓库的代码
+
+      - name: Log an error
+        run: |
+          echo "::error file=app.js,line=1::Missing semicolon"  # 记录错误信息
+
       - name: Add a comment to the issue
         run: |
-          echo "::error file=app.js,line=1::Missing semicolon"  # 示例错误注释
           gh issue comment ${{ github.event.issue.number }} --body "Thank you for opening this issue!"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用自动生成的 GitHub Token
