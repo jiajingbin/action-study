@@ -3,6 +3,10 @@ on:
   issues:
     types:
       - opened
+
+permissions:
+  issues: write  # 设置对问题的写权限
+
 jobs:
   comment:
     runs-on: ubuntu-latest
