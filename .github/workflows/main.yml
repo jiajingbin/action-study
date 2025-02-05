@@ -18,6 +18,10 @@ jobs:
       - name: Log an error
         run: |
           echo "::error file=app.js,line=1::Missing semicolon"  # 记录错误信息
+          
+      - name: Log an error
+        run: |
+          echo "::warning file=app.js,line=1,col=5,endColumn=7,title=YOUR-TITLE::Missing semicolon"
 
       - name: Add a comment to the issue
         run: |
